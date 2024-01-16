@@ -1,0 +1,79 @@
+Steps to connect azure databricks to BQ
+
+1.ensure bigquery api and cloud storage api are enabled
+
+2. create a gcp service account
+
+3. generate json keys from gcp service account
+
+4. create a gcp bucket (or use the auto created dataproc bucket if have)
+
+5. in cloud storage, under the gcp bucket's configuration, 
+may need to set these settings
+-Public access prevention: Not enabled by org policy or bucket setting
+-Public access: Subject to object ACLs	
+-make sure location of bucket and bq dataset is the same e.g. asia-southeast1
+
+6. In the GCP bucket, click grant access and add roles (not sure if all are needed):
+storage admin
+storage object admin
+Storage Object Creator
+Storage Legacy Bucket Owner
+Storage Legacy Bucket Reader
+Storage Legacy Object Owner
+Storage Legacy Object Reader
+Storage Legacy Bucket Writer
+
+7. Add roles to service account in IAM & admin section (not sure if all are needed):
+
+BigQuery Admin
+BigQuery Data Editor
+BigQuery Job User
+BigQuery Read Session User
+Storage Admin
+Storage Object Admin
+Storage Transfer Admin
+
+8. Go to databricks, click data in the side panel, then click create table button. 
+there will be a box saying 'drop files to upload, or click to browse'.
+upload your json key generated from your gcp service account here.
+Once you add the file, you dont have to click anything else to upload. it will be accepted with a green tick, and it will be in filestore/tables
+
+9.In your cluster, under advanced options, in spark config, add:
+spark.hadoop.google.cloud.auth.service.account.enable true
+
+10. In your cluster, under advanced options, in environment variables, add:
+GOOGLE_APPLICATION_CREDENTIALS=/dbfs/FileStore/tables/zp_dev_looker_analytics_5c1f2b7378bc.json
+
+11. In your spark notebook:
+
+df = spark.read.parquet('dbfs:/mnt/zpcsmdevdatalake/raw/BDP/schema_name=zip_insider/table_name=material_movement/year=2023/')
+
+df.write.format('bigquery').mode('overwrite')\
+.option('parentProject','zp-dev-looker-analytics')\
+.option('temporaryGcsBucket','dataproc-staging-asia-southeast1-562285499103-rbrjjwkd')\
+.option('table','insider_dev.material_movement2')\
+.save()
+
+df.write.format("parquet").mode("overwrite")\
+.option("parentProject",'zp-dev-looker-analytics')\
+.save("gs://test-bucket-zp/races_info")
+
+spark.read.format("bigquery")\
+.option("parentProject", 'zp-dev-looker-analytics')\
+.option('table','insider_dev.material_movement2')\
+.load()
+
+spark.read.format("parquet")\
+.load("gs://test-bucket-zp/races_info")
+
+other notes
+
+cluster uses spark 3.1.2
+
+https://medium.com/analytics-vidhya/azure-data-bricks-query-google-big-query-6e3de4ef2ef5 ( this is the article that talks about adding environmental variable)
+
+https://www.linkedin.com/pulse/reading-from-azure-datalake-writing-google-bigquery-via-deepak-rajak/ ( this is the article that touches on some concepts, but could not get to work without environment variable)
+
+
+

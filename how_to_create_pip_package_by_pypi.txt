@@ -1,0 +1,54 @@
+1.create an empty folder e.g. called base-folder
+2. cd into that folder
+3. create a folder (e.g. zdt) and put your python files inside
+4. create a python file called setup.py. 
+sample contents of setup.py (things to edit are like name, version, install_requires(this one have to ensure no standard python packages that are already installed by python e.g. os)):
+
+from setuptools import setup, find_packages
+import codecs
+import os
+
+VERSION = '2.0'
+DESCRIPTION = 'zdt'
+
+# Setting up
+setup(
+    name="zdt",
+    version=VERSION,
+    author="Dickson",
+    author_email="<suwon2912@gmail.com>",
+    description=DESCRIPTION,
+    packages=find_packages(),
+    install_requires=['sqlalchemy', 'typing', 'hdbcli','redmail','pandas>=1.1','datetime','python-dateutil','numpy'],
+    keywords=['python', 'video', 'stream', 'video stream', 'camera stream', 'sockets'],
+    classifiers=[
+        "Development Status :: 1 - Planning",
+        "Intended Audience :: Developers",
+        "Programming Language :: Python :: 3",
+        "Operating System :: Unix",
+        "Operating System :: MacOS :: MacOS X",
+        "Operating System :: Microsoft :: Windows",
+    ]
+)
+
+5. go to dist folder and clear files from prev versions
+
+6. run this command in command primpt to create wheel and eggs files(make sure to have wheel, setuptools, latest version of pip, ez_setup):
+python3 setup.py sdist bdist_wheel
+
+7. run this command to upload to pypi (make sure you hae twine):
+
+twine upload dist/*
+
+username: __token__
+
+password (ctrl c and ctrl v in) = pypi-AgEIcHlwaS5vcmcCJDFkZDVhNzBhLWNkMTYtNDc3ZC1iODRjLWJkOWFmNThhOGZkMgACKlszLCI5ZmNjY2ZkYy03NTg2LTQ5ZmQtODgwOC0xYTliMmY4ZmQ4N2EiXQAABiARmrgUZmU3a95_pMBlWWo06FMYs3W5qC2IS5BDZAHWzQ
+
+other notes
+https://www.youtube.com/watch?v=tEFkHEKypLI&t=606s
+
+https://www.partitionwizard.com/partitionmanager/python-setup-py-egg-info-failed-with-error-code-1.html
+
+
+
+

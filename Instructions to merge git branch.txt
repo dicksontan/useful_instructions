@@ -1,0 +1,58 @@
+Instructions to merge git branch
+
+1. cd into the local repo
+2. git pull (or git pull origin **branch_name** after you fetch and checkout)
+4. git fetch to get the newest branches
+5. git checkout [branch name]
+6. git add -A
+7. git status
+8. git commit -m "[status message]"
+9. git push
+10. go back to the link, check changes, approve request then press merge
+11. ask CA to delete branch
+12. git checkout main
+13. git pull to update local
+14. delete the CA branch in vs code
+
+error:
+fatal: The current branch feature/CA-13 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin feature/CA-13
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+sol:
+git push origin **branch name** or git push --set-upstream origin feature/CA-13
+
+error: cannot see branch after git fetch
+sol:
+git branch -r
+git checkout to the origin branch that you want to work on, then
+git branch to create a new branch to work on
+git checkout to the new branch
+
+
+
+question: how to pull changes from main into branch
+git rebase main
+
+question: when working with excel file in branch and want to checkout main and get the main unchanged excel file from origin, then can run
+
+1. git checkout main
+2. git reset --hard HEAD~1
+3. git pull
+
+to reset all changes in local
+
+question: how to delete old git branches in remote
+
+list branches: git branch | findstr "fix/dickson"
+delete branches: git branch | for /f %i in ('findstr "fix/dickson"') do git branch -d %i
+
+question: create local branch from remote branch. lets say ur colleague have a remote branch online and you want to pull to your local.
+
+git branch --track fix/dickson17 origin/fix/dickson2
+
+we create fix/dickson17 by pulling in origin/fix/dickson2

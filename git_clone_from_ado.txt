@@ -1,0 +1,10 @@
+if you dont have key
+1. open gitbash
+2. type in ssh-keygen
+3. press enter when they ask questions so that it goes to default
+# if already have key can start form next step to get public key
+4. cd C:/Users/dtands/.ssh to find the public key
+5. cat id_rsa.pub and copy the key from ssh-rsa all the way to the end like dtands@sgro-406
+6. go press clone, clicks ssh, click manage ssh keys, click +new key, enter a name for the key and copy and paste the copied key from step 5
+7. then press clone, ssh, copy the link
+8. cd into the folder you want to clone then type [git clone {link}]

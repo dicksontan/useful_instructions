@@ -1,0 +1,30 @@
+virtualenv insidersales
+put in excel_config and connection_details
+create logs, pq_output folders, old_files
+put in custom lib files
+copy and paste bat scripts and env file
+scripts\activate.bat and FOR /F %k in (requirements.txt) DO (if NOT # == %k (pip install %k))
+change python script name
+edit bat_config
+
+change2
+edit bat_config
+trf zdt
+trf py files
+trf country bat files and edit sales_org_filter
+add pq_output_adhoc
+delete lines from save_to_pq_start
+trf upload_to_bq_start file and change truncate to append if needed
+
+import socket, random_utils
+add random_utils line in hana query function
+add random_utils line in csm checking date
+change .env file
+transfer upload_to_bq_file
+
+for 16
+transfer duplicate_bq_start.bat
+transfer duplicate_bq_table.py
+
+change back write_append, change back country_list in upload_bq, restore pq_files, change back excel_config sql
+

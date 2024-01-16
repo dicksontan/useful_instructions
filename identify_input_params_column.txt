@@ -1,0 +1,23 @@
+Instructions on how to find the original column that is filtered on input parameters. 
+
+Context
+For example, in SAP HANA, there is input parameters or "period_start" and "period_end". The issue arises on how do we find out which columns these parameters are filtered on?
+
+Steps
+1. Right click and open identified view
+
+2. left click on the second node below semantics in the graph view
+
+3. left click on the node name in "details" box and type "date" to filter out the date columns (this step is only needed at the start to filter out the possible date columns). Select one of the date columns and run through them one by one according to the steps below
+
+4. left click on the second node below semantics in the graph view and click on the "find columns" icon (binoculars) to the right (above output box) and type in your chosen column name, e.g. billingdate to filter out that column in output box
+
+5. Right click on chosen column and click on show lineage. This will display the nodes in th graph view that have/are related to that chosen column
+
+6. Run through the orange boxes that are highlighted (which are the lineage) and search for the filter symbol in the node in graph view
+
+7. If there is a filter symbol, then left click on the node, go to output box, and under filters, double left click on expression to open it. Then, see if it has period_start and period_end in the expression editor. If it does, then we can see the date column that periodstart and periodend is filtered on.
+
+8. Run step 7 for all the nodes with filter symbol in the graph view. If we do not see period_start and period_end, then we click on the last orange box, go to the "details" box, right click on the node name and click open. If we are unable to open and can only see data preview, means we have come to the end base table and then we go back to step 3 and select another date column to search lineage.
+
+9. If we can continue opening, then continue on step 4 until we find the filter expression with period_start and period_end in step 7. In the case where the lineage shows your date column e.g. "billingdate" and the preceeding node is something like "fkdat" (this could mean the "fkdat" column is renamed to "billingdate"), then click on the fkdat node, search under details box for that column e.g. "fkdat", and check if the description on the right of that column name is your initial datetime column e.g. billingdate. We can also click on the node above the "fkdat" node, search in the outputbox for your original column name e.g. "billingdate", and to the right we can see the original column that is derived from the base table. In this case, it could be"BillingHeader.FKDAT", where billing header is the base table and "fkdat" is the initial column name before it was changed to "billingdate". This tells us that "period_start" and "period_end" is filtered on "fkdat" which is eventually renamed to "billingdate".

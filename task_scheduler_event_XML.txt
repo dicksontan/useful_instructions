@@ -1,0 +1,6 @@
+<QueryList>
+  <Query Id="0" Path="Microsoft-Windows-TaskScheduler/Operational">
+    <Select Path="Microsoft-Windows-TaskScheduler/Operational">*[EventData
+[@Name='TaskSuccessEvent'][Data[@Name='TaskName']='\BQ_insidersales_save_pq']]</Select>
+  </Query>
+</QueryList>

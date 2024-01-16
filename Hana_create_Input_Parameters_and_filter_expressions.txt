@@ -1,0 +1,35 @@
+Question: How to create input parameters and filters
+
+Explanation:
+
+input parameters is just a variable created (with no reference to any column). The filters is where we use that input parameter, and link the input parameter with the target column, for example, date_from to fk_dat.
+
+Sample view: BDP, zanalytics/sg_infrared_QVR_201908_local_prn_map
+base vew: live_onezp::zz1_transaction_base
+
+Tracing Lineage:
+zanalytics/sg_infrared_QVR_201908_local_prn_map -> zanalytics::ZZ_OneZP_StandardECC_Analytics -> live_oneZP::Zip_Transaction_ReOrderJoins_Persistence -> live_oneZP::ZZ1_Transaction_Dim_SDS -> Live_OneZP::ZZ1_Transaction_HK ->
+LiveOneZp::ZZ1_Transaction_Base -> VBRK Node (can trace lineage of billingdate)
+
+So what you need to do is go to keep click open in the view projection nodes until the base view/table which have the field you want to filter on, in this case LiveOneZp::ZZ1_Transaction_Base's VBRK Node.
+
+In the base node of BillingHeader which has VBRK, you need to create an input parameter in the base view for PeriodStart. Can actually create on any node.Click on the node, scroll down output on the right and under input parameters click new and fill in.
+
+Then you need to create the filter expression for example:
+
+("MANDT" ='888')
+AND (in ("VKORG",$$p_SalesOrg$$)) 
+AND ("FILTER_DIS_CHANNEL" ='Y')
+AND ("FKDAT" >='$$PeriodStart$$')
+AND ("FKDAT" <='$$PeriodEnd$$')
+AND ("FILTER_Division"='Y')
+
+This filters column FKDAT on the input parameter created - PeriodStart.
+
+Then u right click on input parameters and manage mappings in your output box on the right of sap hana and drag from left (Variables/input parameters) to right (calculation view Variables/Input Parameters).
+
+When other views are built on top of the base view, you just have to make sure that the mappings are similarly mapped.
+
+1101-1102 - 1771
+
+1101-1103 - 1548

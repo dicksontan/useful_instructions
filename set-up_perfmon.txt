@@ -1,0 +1,10 @@
+Open performance monitoring
+on the left hand side, go to data collector sets, user defined
+right click new data collector set
+click create manually
+click create data logs -> performance counter
+possible counters to select: 
+1. memory - % commited bytes in use ---
+2. paging file - %usage - _total
+3. paging file - % Usage - _total
+then add the folder path which u want to save the output
