@@ -1,0 +1,7 @@
+1. cd to local folder
+2. git init
+3. create repo on github, get the https of the repo and do: git remote add origin https://github.com/dicksontan/useful_instructions.git
+4. git checkout -b main
+5. git add .
+6. git commit
+7. git push
