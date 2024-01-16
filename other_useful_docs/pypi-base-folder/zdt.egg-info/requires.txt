@@ -1,0 +1,10 @@
+sqlalchemy
+typing
+hdbcli
+redmail
+pandas>=1.1
+datetime
+python-dateutil
+numpy
+apache-airflow
+azure-storage-file-datalake
