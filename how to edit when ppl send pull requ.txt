@@ -1,0 +1,11 @@
+how to edit when ppl send pull request and then push:
+
+1. git remote add contributor git@ssh.dev.azure.com:v3/zuelligpharmadevops/Data%20Engineering/etl-bq-airflow (this is the reppo name)
+2. git fetch contributor (it will show all branches that can be fetched)
+3. git checkout -b fix/DE-83 contributor/Andy_feature/fix/DE-83
+4. if want to checkout all their files without any conflicts: git checkout --theirs *
+5. then git add, commit and push and u should see the changes in their branch.
+
+
+
+

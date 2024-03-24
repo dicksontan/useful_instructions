@@ -1,0 +1,16 @@
+poetry commands
+
+1.to create new folder:
+poetry new folder_name - this will create new virtualenv called folder_name, with another folder inside called folder_name with __init__.py
+
+2.poetry init - if poetry new cant.
+
+3.to add dependencies:
+poetry add pandas
+
+4.after poetry add everything, then run poetry install to add all dependencies.
+poetry install
+
+5.[tool.poetry] (inside pyproject.toml)
+name = folder1
+package-mode = false -> this is so that you dont have to have the folder called folder1 in your poetry folder before it can run poetry install. if true, it is for packaging purposes like if you want to upload to pypi.

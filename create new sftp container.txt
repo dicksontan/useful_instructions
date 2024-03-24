@@ -1,0 +1,6 @@
+create new sftp container
+1. go to https://portal.azure.com/#@zpssgpatientsolutions.onmicrosoft.com/resource/subscriptions/144b28e4-0ca9-4cce-aa3d-7d6218182137/resourceGroups/data-engineering-prd/providers/Microsoft.Storage/storageAccounts/zpdataengnrsftp/sftp
+2. on left hand side, got container under data storage. click it.
+3. then click + container
+4. set anonymous access level to container
+5. go to sftp under settings, click on deuser, click on permissions, on containers, click to add ur new container, then give it read,write,delete,list
