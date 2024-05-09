@@ -1,0 +1,6 @@
+how to filter tasks done in jira
+
+1. go to issues on the left 
+2. click list view on the right
+3. click on more+ in the middle and search for updated and key in the dates.
+4. filter the rest

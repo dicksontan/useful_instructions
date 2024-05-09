@@ -56,3 +56,15 @@ question: create local branch from remote branch. lets say ur colleague have a r
 git branch --track fix/dickson17 origin/fix/dickson2
 
 we create fix/dickson17 by pulling in origin/fix/dickson2
+
+question: how to force local into repo online?:
+
+# Commit changes
+git add .
+git commit -m "Your commit message"
+
+# Fetch latest changes from the remote repository
+git fetch origin
+
+# Force push your local changes to the remote repository
+git push origin <branch_name> --force

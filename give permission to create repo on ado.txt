@@ -1,0 +1,7 @@
+give permission to create repo on ado
+
+go to bottom left, will see a setting gear icon.
+
+go to data engineering\repo managers
+
+add.

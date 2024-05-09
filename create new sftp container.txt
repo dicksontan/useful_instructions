@@ -3,4 +3,6 @@ create new sftp container
 2. on left hand side, got container under data storage. click it.
 3. then click + container
 4. set anonymous access level to container
-5. go to sftp under settings, click on deuser, click on permissions, on containers, click to add ur new container, then give it read,write,delete,list
+5. go to sftp under settings, click on deuser, click on permissions, on containers, click to add ur new container, then give it read,write,delete,list. this is for our own use.
+
+6. create a new local user -> go to sftp, add local user, add username, click on ssh password, go to permissions click on the container, give it read and list access. -> this is for client to access
